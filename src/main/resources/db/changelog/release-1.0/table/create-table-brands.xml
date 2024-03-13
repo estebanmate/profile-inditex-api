@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <changeSet author="esteban.martin" id="1 Created new table brands">
+    <!-- Validations -->
+    <preConditions>
+      <not>
+        <tableExists tableName="BRANDS"/>
+      </not>
+    </preConditions>
+    <!-- Create Table -->
+    <createTable tableName="BRANDS">
+      <column autoIncrement="true" name="ID" type="INT">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="NAME" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <!-- Roll back -->
+    <rollback>
+      <dropTable tableName="BRANDS"/>
+    </rollback>
+    <comment>Created new table named 'BRANDS'</comment>
+  </changeSet>
+</databaseChangeLog>
